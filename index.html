@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Descriptr</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #3dd68c;
+      --green-light: #5de8a4;
+      --green-muted: #c2f4df;
+      --lavender: #a855f7;
+      --lavender-light: #e9d5ff;
+      --lavender-muted: #f5f0ff;
+      --bg: #f0f0ff;
+      --surface: #ffffff;
+      --text: #1a1a2e;
+      --text-muted: #6b6b8a;
+      --border: #e0d8f5;
+      --accent: #2bc47a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: linear-gradient(135deg, #e0fdf4 0%, #ede9fe 100%);
+      background-attachment: fixed;
+      color: var(--text);
+      min-height: 100vh;
+      padding: 40px 20px 80px;
+    }
+
+    /* Hero */
+    .hero {
+      max-width: 660px;
+      margin: 0 auto 36px;
+      background: linear-gradient(135deg, #3dd68c 0%, #60a8d0 50%, #a855f7 100%);
+      border-radius: 20px;
+      padding: 40px 44px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle, rgba(184,169,212,0.25) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: 30px;
+      width: 140px; height: 140px;
+      background: radial-gradient(circle, rgba(106,171,126,0.2) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--lavender);
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+    }
+
+    /* Card */
+    .card {
+      max-width: 660px;
+      margin: 0 auto;
+      background: var(--surface);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(30,38,32,0.06);
+    }
+
+    /* Tabs */
+    .tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tab {
+      padding: 16px 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      text-align: center;
+    }
+
+    .tab::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 20%; right: 20%;
+      height: 2px;
+      background: linear-gradient(90deg, #3dd68c, #a855f7);
+      border-radius: 2px 2px 0 0;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .tab.active {
+      color: #7c3aed;
+      background: var(--lavender-muted);
+    }
+
+    .tab.active::after { opacity: 1; }
+    .tab:hover:not(.active) { background: #f8faf8; color: var(--text); }
+
+    /* Panels */
+    .panels { padding: 32px 36px 36px; }
+
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* Form elements */
+    .field { margin-bottom: 20px; }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 7px;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      resize: vertical;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+      border-color: var(--green-light);
+      box-shadow: 0 0 0 3px rgba(106,171,126,0.15);
+    }
+
+    textarea { min-height: 110px; }
+
+    .hint {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 5px;
+      line-height: 1.5;
+    }
+
+    /* Select */
+    select {
+      width: 100%;
+      padding: 12px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7d70' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    select:focus { border-color: var(--green-light); box-shadow: 0 0 0 3px rgba(106,171,126,0.15); }
+
+    /* File upload */
+    .upload-area {
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 36px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--bg);
+      position: relative;
+    }
+
+    .upload-area:hover, .upload-area.dragover {
+      border-color: var(--green-light);
+      background: rgba(106,171,126,0.05);
+    }
+
+    .upload-area input[type="file"] {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+    }
+
+    .upload-icon {
+      width: 40px; height: 40px;
+      margin: 0 auto 10px;
+      background: var(--green-muted);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .upload-icon svg { color: var(--green); }
+
+    .upload-text { font-size: 14px; color: var(--text-muted); }
+    .upload-text strong { color: var(--green); font-weight: 500; }
+
+    #image-preview {
+      display: none;
+      margin-top: 12px;
+      border-radius: 10px;
+      overflow: hidden;
+      max-height: 200px;
+    }
+
+    #image-preview img { width: 100%; height: 200px; object-fit: contain; background: var(--bg); }
+
+    /* Button */
+    .btn {
+      width: 100%;
+      padding: 14px;
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #fff;
+      background: linear-gradient(135deg, #3dd68c 0%, #a855f7 100%);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: 8px;
+    }
+
+    .btn:hover { background: linear-gradient(135deg, #2bc47a 0%, #9333ea 100%); }
+    .btn:active { transform: scale(0.99); }
+    .btn:disabled { background: var(--green-muted); color: var(--green); cursor: not-allowed; }
+
+    .btn-secondary {
+      background: var(--lavender-light);
+      color: #5a4a8a;
+      margin-top: 12px;
+    }
+
+    .btn-secondary:hover { background: var(--lavender); color: #fff; }
+
+    /* Result box */
+    .result-box {
+      display: none;
+      margin-top: 24px;
+      padding: 20px;
+      background: var(--lavender-muted);
+      border: 1px solid var(--lavender);
+      border-radius: 12px;
+    }
+
+    .result-box.visible { display: block; }
+
+    .result-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7a6aaa;
+      margin-bottom: 10px;
+    }
+
+    .result-content {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text);
+      white-space: pre-wrap;
+    }
+
+    /* Loader */
+    .loader {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .loader.visible { display: flex; }
+
+    .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid var(--green-muted);
+      border-top-color: var(--green);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Error */
+    .error-box {
+      display: none;
+      margin-top: 16px;
+      padding: 12px 16px;
+      background: #fff0f0;
+      border: 1px solid #f5c0c0;
+      border-radius: 10px;
+      font-size: 13px;
+      color: #c0392b;
+    }
+
+    .error-box.visible { display: block; }
+
+    /* Divider */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 24px 0;
+    }
+
+    /* Subtabs */
+    .subtabs {
+      display: flex;
+      gap: 8px;
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 4px;
+    }
+
+    .subtab {
+      flex: 1;
+      padding: 9px 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+
+    .subtab.active {
+      background: #fff;
+      color: #7c3aed;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .subtab:hover:not(.active) { color: var(--text); }
+
+    /* Info badge */
+    .info-badge {
+      font-size: 13px;
+      color: var(--text-muted);
+      background: var(--lavender-muted);
+      border: 1px solid var(--lavender-light);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    /* Instruction block */
+    .instruction-block {
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .instruction-block summary {
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #7c3aed;
+      cursor: pointer;
+      user-select: none;
+      background: var(--lavender-muted);
+    }
+
+    .instruction-block summary:hover { background: var(--lavender-light); }
+
+    .instruction-content {
+      padding: 16px;
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    .instruction-content code {
+      background: var(--bg);
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-size: 12px;
+      font-family: monospace;
+    }
+
+    .instruction-content ul {
+      margin: 8px 0 0 16px;
+    }
+
+    .instruction-content li { margin-bottom: 8px; }
+
+    .eg {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: monospace;
+      background: var(--bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .code-example {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 12px;
+      font-family: monospace;
+      line-height: 1.8;
+      white-space: pre-wrap;
+    }
+
+    /* Input toggle */
+    .input-toggle {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .toggle-btn {
+      padding: 7px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .toggle-btn.active {
+      color: #7c3aed;
+      background: var(--lavender-muted);
+      border-color: var(--lavender);
+    }
+
+    .subpanel-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 14px 0 18px;
+      font-style: italic;
+    }
+
+    .field-intro {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .field-comment {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-label">Descriptr</div>
+    <h1>Контент для товаров — за минуту</h1>
+    <p>Характеристики, продающие описания и предметные фото.<br>Без копирайтера и дизайнера.</p>
+  </div>
+
+  <!-- Card -->
+  <div class="card">
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('specs')">Характеристики</button>
+      <button class="tab" onclick="switchTab('desc')">Описание</button>
+      <button class="tab" onclick="switchTab('img')">Изображение</button>
+    </div>
+
+    <div class="panels">
+
+      <!-- TAB: Характеристики -->
+      <div class="panel active" id="panel-specs">
+
+        <!-- Подвкладки -->
+        <div class="subtabs">
+          <button class="subtab active" id="subtab-quick" onclick="switchSubtab('quick')">Быстрый поиск</button>
+          <button class="subtab" id="subtab-structured" onclick="switchSubtab('structured')">Стандартизированные</button>
+        </div>
+
+        <!-- Быстрый поиск -->
+        <div id="subpanel-quick">
+          <p class="subpanel-desc">ИИ сам подберёт характеристики товара</p>
+          <div class="field">
+            <label>Название товара</label>
+            <input type="text" id="specs-name" placeholder="Например: Термос с кнопкой NB-KN 1000 мл" />
+          </div>
+          <div class="field">
+            <label>Сайт для поиска <span style="font-weight:300;text-transform:none;letter-spacing:0">(необязательно)</span></label>
+            <input type="text" id="specs-sites" placeholder="ozon.ru" />
+            <div class="hint">Если не указать — ИИ будет искать на проверенных площадках.</div>
+          </div>
+          <button class="btn" onclick="findSpecs('quick')">Найти характеристики</button>
+        </div>
+
+        <!-- Стандартизированные -->
+        <div id="subpanel-structured" style="display:none">
+          <p class="subpanel-desc">ИИ заполнит характеристики, которые нужны вашему сайту или маркетплейсу</p>
+          <div class="field">
+            <label>Название товара</label>
+            <input type="text" id="specs-name-st" placeholder="Например: Термос с кнопкой NB-KN 1000 мл" />
+          </div>
+          <div class="field">
+            <label>Сайт для поиска <span style="font-weight:300;text-transform:none;letter-spacing:0">(необязательно)</span></label>
+            <input type="text" id="specs-url-st" placeholder="gefest.com" />
+            <div class="hint">Если указать — ИИ возьмёт данные напрямую с этого сайта.</div>
+          </div>
+          <p class="field-intro">Укажите нужные характеристики и допустимые значения — текстом или загрузите готовый JSON-файл.</p>
+
+          <!-- Переключатель текст/JSON -->
+          <div class="input-toggle">
+            <button class="toggle-btn active" id="toggle-text" onclick="switchStructInput('text')">Текстом</button>
+            <button class="toggle-btn" id="toggle-json" onclick="switchStructInput('json')">JSON-файл</button>
+          </div>
+
+          <!-- Текстовый ввод + инструкция -->
+          <div id="struct-text-input">
+            <details class="instruction-block">
+              <summary>Как заполнить ↓</summary>
+              <div class="instruction-content">
+                <p>Каждая характеристика — с новой строки в формате <code>Название: значения</code></p>
+                <ul style="margin-top:10px">
+                  <li><strong>/</strong> — только одно значение из списка:<br>
+                    <span class="eg">Тип: холодильник / стиральная машина / духовой шкаф</span>
+                    <em class="field-comment"> — выбирается что-то одно</em></li>
+                  <li style="margin-top:8px"><strong>,</strong> — можно выбрать несколько значений:<br>
+                    <span class="eg">Цвет: чёрный, красный, белый, бежевый</span>
+                    <em class="field-comment"> — можно указать 2 и более</em></li>
+                  <li style="margin-top:8px">Числовые поля — пишите единицу в значении:<br>
+                    <span class="eg">Объём: число (л)</span></li>
+                  <li style="margin-top:8px">Текстовые поля — допустим любой произвольный текст:<br>
+                    <span class="eg">Комплектация: текст</span></li>
+                </ul>
+                <p style="margin-top:12px"><strong>Пример:</strong></p>
+                <pre class="code-example">Тип: холодильник / стиральная машина / духовой шкаф
+Цвет: чёрный, красный, белый, бежевый
+Объём: число (л)
+Комплектация: текст</pre>
+              </div>
+            </details>
+            <div class="field">
+              <label>Структура характеристик</label>
+              <textarea id="specs-structure-text" style="min-height:120px" placeholder="Тип: холодильник / стиральная машина / духовой шкаф&#10;Цвет: чёрный, красный, белый, бежевый&#10;Объём: число (л)"></textarea>
+            </div>
+          </div>
+
+          <!-- JSON загрузка + инструкция -->
+          <div id="struct-json-input" style="display:none">
+            <details class="instruction-block">
+              <summary>Формат JSON-файла ↓</summary>
+              <div class="instruction-content">
+                <p>Каждый ключ — название характеристики, значение — допустимые варианты:</p>
+                <ul style="margin-top:10px">
+                  <li><strong>/</strong> — только одно значение из списка:<br>
+                    <span class="eg">"Тип": "холодильник / стиральная машина / духовой шкаф"</span>
+                    <em class="field-comment"> — выбирается что-то одно</em></li>
+                  <li style="margin-top:8px"><strong>,</strong> — можно выбрать несколько:<br>
+                    <span class="eg">"Цвет": "чёрный, красный, белый, бежевый"</span>
+                    <em class="field-comment"> — можно указать 2 и более</em></li>
+                  <li style="margin-top:8px">Числовые поля:<br>
+                    <span class="eg">"Объём": "число (л)"</span></li>
+                  <li style="margin-top:8px">Текстовые поля — допустим любой произвольный текст:<br>
+                    <span class="eg">"Комплектация": "текст"</span></li>
+                </ul>
+                <p style="margin-top:12px"><strong>Пример файла:</strong></p>
+                <pre class="code-example">{
+  "Тип": "холодильник / стиральная машина / духовой шкаф",
+  "Цвет": "чёрный, красный, белый, бежевый",
+  "Объём": "число (л)",
+  "Комплектация": "текст"
+}</pre>
+              </div>
+            </details>
+            <div class="field">
+              <label>Загрузите JSON-файл</label>
+              <div class="upload-area" id="json-upload-area" style="padding:24px">
+                <input type="file" accept=".json" id="specs-json-file" onchange="loadJsonFile(event)" />
+                <div class="upload-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                <div class="upload-text"><strong>Выберите .json файл</strong></div>
+              </div>
+              <div id="json-loaded" style="display:none;margin-top:8px;font-size:13px;color:var(--green)">✓ Файл загружен</div>
+            </div>
+          </div>
+
+          <button class="btn" onclick="findSpecs('structured')">Найти характеристики</button>
+        </div>
+
+        <div class="loader" id="specs-loader"><div class="spinner"></div> Ищу характеристики...</div>
+        <div class="error-box" id="specs-error"></div>
+
+        <div class="result-box" id="specs-result">
+          <div class="result-label">Характеристики</div>
+          <div class="result-content" id="specs-result-content"></div>
+          <hr class="divider" />
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn-secondary" onclick="sendSpecsToDesc()">Перенести в «Описание» →</button>
+            <button class="btn btn-secondary" id="btn-download-json" style="display:none" onclick="downloadSpecsJson()">Скачать JSON</button>
+            <button class="btn btn-secondary" id="btn-download-csv" style="display:none" onclick="downloadSpecsCsv()">Скачать CSV</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Описание -->
+      <div class="panel" id="panel-desc">
+        <div class="field">
+          <label>Название товара</label>
+          <input type="text" id="desc-name" placeholder="Термос с кнопкой NB-KN 1000 мл" />
+        </div>
+        <div class="field">
+          <label>Ключевые слова</label>
+          <input type="text" id="desc-keys" placeholder="термос, термос с кнопкой, металлический термос..." />
+        </div>
+        <div class="field">
+          <label>Характеристики товара</label>
+          <textarea id="desc-specs" placeholder="Объём: 1000 мл&#10;Высота: 300 мм&#10;Материал: нержавеющая сталь..."></textarea>
+        </div>
+        <button class="btn" onclick="generateDesc()">Создать описание</button>
+
+        <div class="loader" id="desc-loader"><div class="spinner"></div> Генерирую описание...</div>
+        <div class="error-box" id="desc-error"></div>
+
+        <div class="result-box" id="desc-result">
+          <div class="result-label">Готовое описание</div>
+          <div class="result-content" id="desc-result-content"></div>
+        </div>
+      </div>
+
+      <!-- TAB: Изображение -->
+      <div class="panel" id="panel-img">
+        <div class="field">
+          <label>Название товара</label>
+          <input type="text" id="img-name" placeholder="Например: Термос с кнопкой NB-KN 1000 мл" />
+        </div>
+        <div class="field">
+          <label>Фото товара на белом фоне</label>
+          <div class="upload-area" id="upload-area">
+            <input type="file" accept="image/*" id="img-file" onchange="previewImage(event)" />
+            <div class="upload-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+            </div>
+            <div class="upload-text"><strong>Выберите файл</strong> или перетащите сюда</div>
+          </div>
+          <div id="image-preview"><img id="preview-img" src="" alt="preview" /></div>
+        </div>
+        <div class="field">
+          <label>Фон</label>
+          <select id="img-bg">
+            <option value="auto">Подобрать автоматически</option>
+            <optgroup label="Интерьер">
+              <option value="kitchen">Кухня</option>
+              <option value="living room">Гостиная</option>
+              <option value="bedroom">Спальня</option>
+              <option value="bathroom">Ванная комната</option>
+              <option value="office">Офис</option>
+              <option value="children's room">Детская комната</option>
+            </optgroup>
+            <optgroup label="Улица и природа">
+              <option value="nature">Природа</option>
+              <option value="beach">Пляж</option>
+              <option value="city street">Городская улица</option>
+              <option value="cafe or restaurant">Кафе / ресторан</option>
+            </optgroup>
+            <optgroup label="Нейтральные">
+              <option value="studio background with soft shadow">Студийный фон с тенью</option>
+              <option value="wooden surface">Деревянная поверхность</option>
+            </optgroup>
+          </select>
+          <div class="hint">При автоподборе модель сама выберет подходящий фон исходя из названия товара.</div>
+        </div>
+        <button class="btn" onclick="generateImage()">Создать фото в интерьере</button>
+
+        <div class="loader" id="img-loader"><div class="spinner"></div> Генерирую изображение...</div>
+        <div class="error-box" id="img-error"></div>
+
+        <div class="result-box" id="img-result">
+          <div class="result-label">Результат</div>
+          <img id="img-result-content" src="" alt="result" style="width:100%;border-radius:8px;display:block;" />
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // ─── CONFIG ─────────────────────────────────────────────────────
+    // Вставь сюда свои webhook URL из n8n
+    const WEBHOOKS = {
+      specs: 'https://ВАШ_ДОМЕН/webhook/specs',
+      desc:  'https://ВАШ_ДОМЕН/webhook/description',
+      img:   'https://ВАШ_ДОМЕН/webhook/image',
+      specs_st: 'https://ВАШ_ДОМЕН/webhook/specs_st',
+    };
+    // ─────────────────────────────────────────────────────────────────
+
+    function switchTab(name) {
+      document.querySelectorAll('.tab').forEach((t, i) => {
+        const names = ['specs', 'desc', 'img'];
+        t.classList.toggle('active', names[i] === name);
+      });
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + name).classList.add('active');
+    }
+
+    function setLoading(prefix, on) {
+      document.getElementById(prefix + '-loader').classList.toggle('visible', on);
+      if (prefix === 'specs') {
+        document.querySelectorAll('button[onclick^="findSpecs"]').forEach(b => b.disabled = on);
+      } else {
+        const map = {desc:'generateDesc', img:'generateImage'};
+        const btn = document.querySelector(`button[onclick="${map[prefix]}()"]`);
+        if (btn) btn.disabled = on;
+      }
+    }
+
+    function showError(prefix, msg) {
+      const el = document.getElementById(prefix + '-error');
+      el.textContent = msg;
+      el.classList.add('visible');
+    }
+
+    function hideError(prefix) {
+      document.getElementById(prefix + '-error').classList.remove('visible');
+    }
+
+    // ── Характеристики ──────────────────────────────────────────────
+    // Subtab switching
+    function switchSubtab(name) {
+      document.getElementById('subtab-quick').classList.toggle('active', name === 'quick');
+      document.getElementById('subtab-structured').classList.toggle('active', name === 'structured');
+      document.getElementById('subpanel-quick').style.display = name === 'quick' ? 'block' : 'none';
+      document.getElementById('subpanel-structured').style.display = name === 'structured' ? 'block' : 'none';
+    }
+
+    // Toggle text/json input
+    function switchStructInput(type) {
+      document.getElementById('toggle-text').classList.toggle('active', type === 'text');
+      document.getElementById('toggle-json').classList.toggle('active', type === 'json');
+      document.getElementById('struct-text-input').style.display = type === 'text' ? 'block' : 'none';
+      document.getElementById('struct-json-input').style.display = type === 'json' ? 'block' : 'none';
+    }
+
+    // Load JSON file
+    let loadedJsonStructure = null;
+    function loadJsonFile(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        try {
+          loadedJsonStructure = JSON.parse(ev.target.result);
+          document.getElementById('json-loaded').style.display = 'block';
+          document.getElementById('json-loaded').textContent = '✓ Загружено: ' + Object.keys(loadedJsonStructure).length + ' характеристик';
+        } catch {
+          showError('specs', 'Ошибка в JSON-файле. Проверь формат.');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    async function findSpecs(mode) {
+      const nameEl = mode === 'structured'
+        ? document.getElementById('specs-name-st')
+        : document.getElementById('specs-name');
+      const name = nameEl ? nameEl.value.trim() : '';
+      if (!name) { showError('specs', 'Введите название товара.'); return; }
+
+      let structure = null;
+      if (mode === 'structured') {
+        const toggleText = document.getElementById('toggle-text').classList.contains('active');
+        if (toggleText) {
+          const raw = document.getElementById('specs-structure-text').value.trim();
+          if (!raw) { showError('specs', 'Введите структуру характеристик.'); return; }
+          structure = raw;
+        } else {
+          if (!loadedJsonStructure) { showError('specs', 'Загрузите JSON-файл со структурой.'); return; }
+          structure = JSON.stringify(loadedJsonStructure);
+        }
+      }
+
+      hideError('specs');
+      document.getElementById('specs-result').classList.remove('visible');
+      setLoading('specs', true);
+
+      try {
+        const webhookUrl = mode === 'structured' ? WEBHOOKS.specs_st : WEBHOOKS.specs;
+        const res = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            product_name: name,
+            mode: mode || 'quick',
+            structure: structure,
+            url: document.getElementById('specs-url-st') ? document.getElementById('specs-url-st').value.trim() || null : null,
+            sites: document.getElementById('specs-sites') ? document.getElementById('specs-sites').value.trim() || null : null
+          })
+        });
+        if (!res.ok) throw new Error('Ошибка сервера: ' + res.status);
+        const data = await res.json();
+        if (data.error) { showError('specs', data.error); return; }
+        document.getElementById('specs-result-content').textContent = (() => {
+          if (Array.isArray(data)) {
+            const raw = data[0]?.output || data[0]?.text || data[0]?.specs || data[0]?.result || '';
+            return raw ? raw.split('\\n').join('\n') : JSON.stringify(data[0]);
+          }
+          const raw = data.specs || data.output || data.text || data.result || JSON.stringify(data);
+          return typeof raw === 'string' ? raw.split('\\n').join('\n') : JSON.stringify(raw);
+        })();
+        document.getElementById('specs-result').classList.add('visible');
+        // Показываем кнопки скачивания только для стандартизированных
+        const showDownload = (mode === 'structured');
+        document.getElementById('btn-download-json').style.display = showDownload ? 'inline-flex' : 'none';
+        document.getElementById('btn-download-csv').style.display = showDownload ? 'inline-flex' : 'none';
+      } catch (e) {
+        showError('specs', 'Не удалось получить ответ. Проверь, запущен ли n8n и ngrok.');
+      } finally {
+        setLoading('specs', false);
+      }
+    }
+
+    function sendSpecsToDesc() {
+      const name = document.getElementById('specs-name').value.trim();
+      const specs = document.getElementById('specs-result-content').textContent.trim();
+      document.getElementById('desc-name').value = name;
+      document.getElementById('desc-specs').value = specs;
+      switchTab('desc');
+    }
+
+    // ── Описание ────────────────────────────────────────────────────
+    async function generateDesc() {
+      const name = document.getElementById('desc-name').value.trim();
+      const specs = document.getElementById('desc-specs').value.trim();
+      if (!name || !specs) { showError('desc', 'Заполни название и характеристики.'); return; }
+      hideError('desc');
+      document.getElementById('desc-result').classList.remove('visible');
+      setLoading('desc', true);
+
+      try {
+        const res = await fetch(WEBHOOKS.desc, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            product_name: name,
+            keywords: document.getElementById('desc-keys').value.trim() || null,
+            specs: specs
+          })
+        });
+        if (!res.ok) throw new Error('Ошибка сервера: ' + res.status);
+        const data = await res.json();
+        if (data.error) { showError('desc', data.error); return; }
+        const text = Array.isArray(data) ? (data[0]?.text || data[0]?.description || JSON.stringify(data[0])) : (data.description || data.text || data.result || JSON.stringify(data));
+        document.getElementById('desc-result-content').textContent = text;
+        document.getElementById('desc-result').classList.add('visible');
+      } catch (e) {
+        showError('desc', 'Не удалось получить ответ. Проверь, запущен ли n8n и ngrok.');
+      } finally {
+        setLoading('desc', false);
+      }
+    }
+
+    // ── Изображение ─────────────────────────────────────────────────
+    function previewImage(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        document.getElementById('preview-img').src = ev.target.result;
+        document.getElementById('image-preview').style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    async function generateImage() {
+      const fileInput = document.getElementById('img-file');
+      if (!fileInput.files.length) { showError('img', 'Загрузи изображение товара.'); return; }
+      hideError('img');
+      document.getElementById('img-result').classList.remove('visible');
+      setLoading('img', true);
+
+      try {
+        // Конвертируем изображение в base64
+        const base64 = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = e => resolve(e.target.result.split(',')[1]);
+          reader.onerror = reject;
+          reader.readAsDataURL(fileInput.files[0]);
+        });
+
+        const res = await fetch(WEBHOOKS.img, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            image_base64: base64,
+            image_mime: fileInput.files[0].type,
+            product_name: document.getElementById('img-name').value.trim() || null,
+            background: document.getElementById('img-bg').value
+          })
+        });
+        if (!res.ok) throw new Error('Ошибка сервера: ' + res.status);
+        const data = await res.json();
+        const imgUrl = data.image_url || data.url || data.result;
+        document.getElementById('img-result-content').src = imgUrl;
+        document.getElementById('img-result').classList.add('visible');
+      } catch (e) {
+        showError('img', 'Не удалось получить ответ. Проверь, запущен ли n8n и ngrok.');
+      } finally {
+        setLoading('img', false);
+      }
+    }
+
+
+    // ── Скачать характеристики ───────────────────────────────────────
+    function parseSpecsToObject() {
+      const text = document.getElementById('specs-result-content').textContent.trim();
+      const obj = {};
+      for (const line of text.split('\n')) {
+        if (line.includes(':')) {
+          const [key, ...rest] = line.split(':');
+          obj[key.trim()] = rest.join(':').trim();
+        }
+      }
+      return obj;
+    }
+
+    function downloadSpecsJson() {
+      const obj = parseSpecsToObject();
+      const blob = new Blob([JSON.stringify(obj, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'characteristics.json';
+      a.click();
+    }
+
+    function downloadSpecsCsv() {
+      const obj = parseSpecsToObject();
+      const rows = [['Характеристика', 'Значение'], ...Object.entries(obj)];
+      const csv = rows.map(r => r.map(v => `"${v.replace(/"/g, '""')}"`).join(',')).join('\n');
+      const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'characteristics.csv';
+      a.click();
+    }
+
+    // Drag & drop
+    const ua = document.getElementById('upload-area');
+    ua.addEventListener('dragover', e => { e.preventDefault(); ua.classList.add('dragover'); });
+    ua.addEventListener('dragleave', () => ua.classList.remove('dragover'));
+    ua.addEventListener('drop', e => {
+      e.preventDefault();
+      ua.classList.remove('dragover');
+      const file = e.dataTransfer.files[0];
+      if (file) {
+        document.getElementById('img-file').files = e.dataTransfer.files;
+        previewImage({ target: { files: [file] } });
+      }
+    });
+  </script>
+</body>
+</html>

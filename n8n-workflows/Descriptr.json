@@ -1,0 +1,2574 @@
+{
+  "name": "Descriptr",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "description",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        1296,
+        -1072
+      ],
+      "id": "e2a1ae50-8e1b-45e7-8ac7-88065476f925",
+      "name": "Webhook",
+      "webhookId": "93b0fa0e-21e1-40d5-ac75-e79fe2968a1b"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=###Входные данные\nНазвание товара: {{ $json.body.product_name }} \nХарактеристики: {{ $json.body.specs }} \nКлючевые слова: {{ $json.body.keywords }}  ",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=###Роль и контекст\nТы — эксперт по созданию продающих описаний товаров.  \nТвоя задача — создать яркое, структурированное и конверсионное описание товара, используя характеристики, предоставленные пользователем. Описание должно мотивировать к покупке за счёт эмоциональных триггеров, конкретики и пользы для пользователя. Описание должно содержать органично вписанные ключевые слова.\n\n###Требования к описанию\nОбъем - СТРОГО от 1500 до 2500 символов (не более 800 токенов) с учетом пробелов.\nКаждое утверждение подтверждено предоставленными характеристиками, домыслы недопустимы.\nАбсолютно все ключевые слова присутствуют в тексте и читаются естественно. \nИзбегай фраз “лучший”, “идеальный”. Избегай чересчур “громких” эпитетов типа “фантастический”, “невероятный”.\nНикаких клише и размытых фраз типа \"Этот чайник станет идеальным помощником на вашей кухне.\" Только конкретика.\n\n###Структура описания\n1. Заголовок:  \nКороткий (до 100 символов), с основным ключевым словом и одним преимуществом.  \n> Пример: “Заварочный чайник из термостекла 1 л — стиль, долговечность и вкус чая без примесей”  \n\n2. Вступление (Hook):  \nЭмоциональное вступление, которое цепляет и описывает главную пользу.  1-2 абзаца.\n\n3. Основной блок:  \n- Основные преимущества товара, УТП (списком из 5-6 пунктов)\n\n4. Заключение (Call to Action):  \nМотивирующее предложение купить:  \n> “Выберите качество и комфорт — добавьте товар в корзину прямо сейчас!”  \n\n\n###Пример ожидаемого вывода  \nЭлектрическая духовка ЭДВ ДА 622-05 БS — универсальная духовка с грилем и конвекцией для ваших любимых блюд!\n\nРадуйте близких вкусной едой с электродуховкой ЭДВ ДА 622-05 БS. Этот надежный духовой шкаф с грилем и конвекцией способен обеспечить равномерное и качественное пропекание. Благодаря вместительному объему 55 литров и множеству режимов работы вы сможете готовить как небольшие порции, так и полноценные праздничные ужины. Удобство использования и умные функции делают этот духовой шкаф практичным решением для современной кухни.\n\nПреимущества электродуховки ЭДВ ДА 622-05 БS:  \n- Встроенный электрический гриль мощностью 1200 Вт с различными режимами, включая гриль с вертелом и усиленный гриль с конвекцией, для создания золотистой корочки и сочных блюд. \n- Телескопические направляющие обеспечивают безопасное и удобное извлечение противней и решеток.\n- Безопасность использования повышена благодаря функции защиты от детей, что особенно важно для семей с маленькими детьми.  \n- Удобство очистки за счет гидролизной системы — удаление загрязнений происходит легко и без дополнительных усилий.\n- Наличие таймера помогает четко контролировать время приготовления и избегать пригорания.\n- Комплектация включает вертел, жаровню, противень, решетку, стеклянную форму для запекания и шашлычницу, что делает духовку готовой к разнообразным кулинарным задачам.  \n\nЕсли вы ищете функциональный духовой шкаф с грилем и конвекцией, который будет надежным помощником в приготовлении самых разнообразных блюд, электрическая духовка ЭДВ ДА 622-05 БS предлагает все необходимые режимы и удобства в одном устройстве. Ее технологичные решения и объем позволят готовить быстро и качественно каждый день.\n\nВыберите удобство и качество в приготовлении — добавьте электродуховку ЭДВ ДА 622-05 БS в корзину прямо сейчас!\n\n\nРезультат — готовый SEO-текст, который выглядит естественно и продает."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        2240,
+        -1088
+      ],
+      "id": "7af1987b-e166-4105-8bc6-cc8dd4b09736",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "model": "google/gemini-3-flash-preview",
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        2240,
+        -912
+      ],
+      "id": "f4956e14-19e1-45b9-9153-d19c3ee02d0f",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "MCnSM3CZQBR3ADjF",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        2560,
+        -1088
+      ],
+      "id": "cb96cede-7ad0-40b6-8ef2-c4e5eaa0c8c8",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "specs",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -384,
+        -1056
+      ],
+      "id": "e11a9716-4ca5-4e2d-ac94-5963be3a5f05",
+      "name": "Webhook1",
+      "webhookId": "93b0fa0e-21e1-40d5-ac75-e79fe2968a1b"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Найди характеристики для товара: {{ $json.body.product_name }}\n{% if $json.body.sites %}Искать на сайтах: {{ $json.body.sites }}{% endif %}",
+        "options": {
+          "systemMessage": "###Роль\nТы - помощник контент-менеджера. Пользователь передаёт название товара - тебе необходимо выполнить поиск в интернете и вернуть характеристики в требуемом формате. Строго запрещено придумывать характеристики - выдавай только те, которые нашел. \n\n###Источники информации\nЕсли пользователь указал конкретные сайты для поиска - ищи на них.\nЕсли пользователь не указал конкретные сайты для поиска - ищи на следующих доверенных сайтах (расположены по приоритету):\n1) Официальные сайты производителей данного товара.\n2) Сайты официальных дилеров данного товара.\n3) Крупные интернет-магазины, такие как dns, holodilnik.ru, mvideo.\nСтрого запрещено при поиске использовать маркетплейсы (Яндекс.Маркет, Ozon, Wildberries). \n\n###Формат вывода\nВерни характеристики в виде структурированного списка: каждая характеристика на новой строке в формате \"Название: значение\"\nПоследним пунктом должна быть характеристика \"Источник информации\", куда ты должен приложить ссылку, с которой взял информацию.\nНе включай характеристику \"Цена\". \nСтрого запрещено добавлять какие-либо дополнительные комментарии - возвращай только список характеристик.\n\n###Требования к характеристикам\nКоличество характеристик зависит от категории товара - их должно быть достаточно для того, чтобы покупатель мог принять решение о выборе. Обязательно должны присутствовать характеристики, важные для конкретной категории - перед выводом хорошо подумай, какие могут быть важны для этого товара. Чем больше будет характеристик - тем лучше.\nКаждая характеристика должна иметь подтверждение - придумывать характеристики или их значения недопустимо.\nСтрого запрещено подставлять в значения характеристик \"примерные\" или \"условные\" значения. \n\n###Если информации нет\nЕсли не нашлось информации о товаре или она выглядит неправдоподобной - верни следующий текст: \n\n\"Очень жаль, но не удалось найти страницу товара. Возможные причины:\n— опечатка в названии модели\n— производитель не публикует характеристики онлайн\n\nПопробуйте уточнить название товара.\"\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        560,
+        -1072
+      ],
+      "id": "515a2c40-8994-4602-b45b-af09c7a99264",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "google/gemini-3-flash-preview",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        560,
+        -912
+      ],
+      "id": "d377cecd-d33d-48f8-ad0c-7111a1089839",
+      "name": "OpenRouter Chat Model1",
+      "credentials": {
+        "openRouterApi": {
+          "id": "MCnSM3CZQBR3ADjF",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "q": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Search_Query__q_', ``, 'string') }}",
+        "additionalFields": {
+          "hl": "ru"
+        },
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-serpapi.serpApiTool",
+      "typeVersion": 1,
+      "position": [
+        704,
+        -912
+      ],
+      "id": "1f7aee45-5a3a-45f0-af95-1fb4dfe1135d",
+      "name": "Google search in SerpApi",
+      "credentials": {
+        "serpApi": {
+          "id": "cYY9jABSpwwOuxes",
+          "name": "SerpAPI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        880,
+        -1072
+      ],
+      "id": "859c1331-d6c0-420c-9ee1-62a8ce36f983",
+      "name": "Respond to Webhook1"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "specs_st",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -368,
+        -432
+      ],
+      "id": "ef214365-bf12-4bfd-8130-2a1d5b0dde52",
+      "name": "Webhook2",
+      "webhookId": "93b0fa0e-21e1-40d5-ac75-e79fe2968a1b"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Товар: {{ $json.body.product_name }}",
+        "options": {
+          "systemMessage": "=Найди страницу данного товара в интернете.\n{{ $json.body.url ? 'Ищи только на сайте: ' + $json.body.url : '' }}\n\nИсточники в порядке приоритета (если сайт не указан):\n1) Официальный сайт производителя\n2) Сайты официальных дилеров\n3) Крупные интернет-магазины, такие как dns-shop.ru, holodilnik.ru, mvideo.ru\nЗапрещено использовать маркетплейсы.\n\nТовар: {{ $json.body.product_name }}\n\nВерни только URL страницы товара — без пояснений, только ссылка.\n\nЕсли не найдено ни одной ссылке - верни текст \"Товар не найден\". Строго в такой формулировке."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        624,
+        -448
+      ],
+      "id": "fcbd9fdc-579b-4473-b52f-9f275f195c72",
+      "name": "AI Agent2"
+    },
+    {
+      "parameters": {
+        "model": "google/gemini-3-flash-preview",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        624,
+        -256
+      ],
+      "id": "03d52576-06ca-4877-bb91-24e6c66c3fd7",
+      "name": "OpenRouter Chat Model3",
+      "credentials": {
+        "openRouterApi": {
+          "id": "MCnSM3CZQBR3ADjF",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "q": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Search_Query__q_', ``, 'string') }}",
+        "additionalFields": {
+          "hl": "ru"
+        },
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-serpapi.serpApiTool",
+      "typeVersion": 1,
+      "position": [
+        768,
+        -256
+      ],
+      "id": "a9862586-2353-47e2-8b2e-afd377f16c10",
+      "name": "Google search in SerpApi2",
+      "credentials": {
+        "serpApi": {
+          "id": "cYY9jABSpwwOuxes",
+          "name": "SerpAPI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1072,
+        -464
+      ],
+      "id": "ad035d68-3fd6-4bf9-b70f-ca52c8a85f67",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=###Входные данные\nНазвание товара: {{ $('Webhook2').first().json.body.product_name }}\n\nСтруктура характеристик:\n{{ $('Webhook2').first().json.body.structure }}\n\nТекст страницы:\n{{ $json.text }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=###Роль Ты - помощник контент-менеджера. Тебе передаётся текст страницы товара и структура характеристик с допустимыми значениями. Твоя задача — извлечь характеристики из текста и заполнить структуру. \n\n###Правила заполнения структуры\n- Значения через / — выбери одно наиболее подходящее \n- Значения через , — выбери все подходящие, перечисли через запятую. Если подходящих нет - укажи \"не найдено\"\n- Значение \"число (ед.измерения)\" — подставь найденное числовое значение с единицей. СТРОГО ЗАПРЕЩЕНО добавлять \"не менее\", \"не более\", \"приблизительно\" и т.д. - только цифра и единицы измерения.\n- Значение: текст - значит вместо \"текст\" может быть любое значение, без ограничений\n- Если значение не найдено в тексте — пиши \"не найдено\" \n- СТРОГО ЗАПРЕЩЕНО додумывать, угадывать или использовать типичные значения для категории - заполняй только подтвержденные факты. Если информации нет в приложенном тексте - пиши \"не найдено\"\n- СТРОГО ЗАПРЕЩЕНО использовать значения характеристик, которых нет в примерах допустимых значений, даже если они похожи на допустимые. Обязательно проверяй, есть ли такое значение в списке допустимых. Если нет - не указывай.\n- СТРОГО ЗАПРЕЩЕНО добавлять любые комментарии. \n- Последняя характеристика - \"Источник информации\". Значение характеристики - {{ $('AI Agent2').item.json.output }}. \n\n###Формат вывода Каждая характеристика на новой строке: \"Название: значение\" \nНикаких дополнительных комментариев — только список. "
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        1504,
+        -464
+      ],
+      "id": "94c73c82-54a5-46e8-b3f7-f77c0c270e93",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "model": "google/gemini-3-flash-preview",
+        "options": {
+          "temperature": 0.3
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1504,
+        -288
+      ],
+      "id": "e86f31df-10e6-48d2-9387-b0ad372ee954",
+      "name": "OpenRouter Chat Model5",
+      "credentials": {
+        "openRouterApi": {
+          "id": "MCnSM3CZQBR3ADjF",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        3008,
+        -480
+      ],
+      "id": "24983880-cdcd-44d6-ba2f-7386cde794ae",
+      "name": "Respond to Webhook3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1ec81023-35f8-49f3-a3d8-f34bad91c506",
+              "leftValue": "={{ $json.not_found_count }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2016,
+        -464
+      ],
+      "id": "502770aa-e5d3-40ec-83d1-3e238ae2098f",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=###Входные данные\nТовар: {{ $('Webhook2').first().json.body.product_name }}\nХарактеристики для поиска:\n{{ $json.not_found_structure }}",
+        "options": {
+          "systemMessage": "=###Роль\nТы - помощник контент-менеджера. Тебе передан список характеристик которые не удалось найти на официальном сайте производителя. Найди их на других источниках.\n\n###Алгоритм — выполняй строго по шагам\nШаг 1. Найди страницу товара на первом доступном источнике из списка ниже (кроме запрещённого). Один поисковый запрос.\nШаг 2. Из результатов поиска извлеки значения для характеристик из списка. Что нашёл — запиши. Что не нашёл — оставь знак ?.\nШаг 3. Если остались характеристики со знаком ? и есть ещё неиспользованные источники — перейди к следующему источнику. Повтори шаги 1-2.\nШаг 4. После максимум 5 источников — остановись и верни результат.\n\n###Источники\nИщи строго в порядке приоритета, пропускай сайт {{ $('AI Agent2').item.json.output }}:\n1) Официальные дилеры производителя\n2) Крупные интернет-магазины типа dns-shop.ru, holodilnik.ru, mvideo.ru, technopark.ru\nЗапрещено использовать маркетплейсы (Яндекс.Маркет, Ozon, Wildberries).\n\n###Правила заполнения\n- Значения через / — выбери одно наиболее подходящее \n- Значения через , — выбери все подходящие, перечисли через запятую \n- Значение \"число (ед.измерения)\" — подставь найденное числовое значение с единицей. Запрещено писать \"не менее\", \"не более\", \"приблизительно\" и т.д. - только цифра и единицы измерения.\n- Значение: текст - значит вместо \"текст\" может быть любое значение, без ограничений\n- Если значение не найдено в тексте — пиши \"не найдено\" \n- СТРОГО ЗАПРЕЩЕНО додумывать, угадывать или использовать типичные значения для категории - заполняй только подтвержденные факты. Если информации нет в приложенном тексте - пиши \"не найдено\"\n- СТРОГО ЗАПРЕЩЕНО использовать значения характеристик, которых нет в примерах допустимых значений\n- СТРОГО ЗАПРЕЩЕНО добавлять любые комментарии. \n\n###Формат вывода\nКаждая характеристика на новой строке: \"Название: значение\"\nЕсли не найдено — \"Название: не найдено\"\nНикаких комментариев — только список.",
+          "maxIterations": 10
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        2192,
+        -384
+      ],
+      "id": "2256e615-e4eb-41d4-8664-50a97dafea11",
+      "name": "AI Agent4",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "model": "google/gemini-3-flash-preview",
+        "options": {
+          "temperature": 0.3
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        2192,
+        -256
+      ],
+      "id": "f24c5071-4880-41f6-b71d-3e267ddc6045",
+      "name": "OpenRouter Chat Model6",
+      "credentials": {
+        "openRouterApi": {
+          "id": "MCnSM3CZQBR3ADjF",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "q": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Search_Query__q_', ``, 'string') }}",
+        "additionalFields": {
+          "hl": "ru"
+        },
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-serpapi.serpApiTool",
+      "typeVersion": 1,
+      "position": [
+        2336,
+        -256
+      ],
+      "id": "2a10d595-73f9-4578-9a2d-ad3f3b287adf",
+      "name": "Google search in SerpApi4",
+      "credentials": {
+        "serpApi": {
+          "id": "cYY9jABSpwwOuxes",
+          "name": "SerpAPI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "38d46606-23c8-4695-9276-6a788d636cf9",
+              "leftValue": "={{ $json.output }}",
+              "rightValue": "Товар не найден",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        912,
+        -448
+      ],
+      "id": "b68a8da7-a43b-48fe-9b31-c25893950ae8",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "Очень жаль, но не удалось найти страницу товара. Возможные причины:\n— опечатка в названии модели\n— производитель не публикует характеристики онлайн\n\nПопробуйте уточнить название или указать сайт для поиска вручную.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1072,
+        -272
+      ],
+      "id": "974594d9-44cd-49bf-9f97-ecc6aa960d22",
+      "name": "Respond to Webhook4"
+    },
+    {
+      "parameters": {
+        "jsCode": "const resultText = items[0].json.text;\n\n// Оригинальная структура из вебхука\nconst originalStructure = $('Webhook2').first().json.body.structure || '';\n\n// Парсим оригинальную структуру в словарь\nconst original = {};\nfor (const line of originalStructure.split('\\n')) {\n  if (line.includes(':')) {\n    const [key, ...rest] = line.split(':');\n    original[key.trim()] = rest.join(':').trim();\n  }\n}\n\n// Парсим результат первого LLM\nconst lines = resultText.split('\\n');\nconst notFound = lines.filter(line => line.toLowerCase().includes('не найдено'));\n\n// Формируем структуру с допустимыми значениями\nconst notFoundWithValues = notFound.map(line => {\n  const key = line.split(':')[0].trim();\n  const allowed = original[key] || '?';\n  return `${key}: ${allowed}`;\n});\n\nreturn [{\n  json: {\n    not_found_structure: notFoundWithValues.join('\\n'),\n    not_found_count: notFound.length\n    // first_result убрали\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1792,
+        -464
+      ],
+      "id": "de53bcd9-6e90-4908-a06a-828829f0ec35",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "jsCode": "const html = $input.first().json.data;\n\n// Убираем все теги, скрипты, стили\nconst clean = html\n  .replace(/<script[\\s\\S]*?<\\/script>/gi, '')\n  .replace(/<style[\\s\\S]*?<\\/style>/gi, '')\n  .replace(/<[^>]+>/g, ' ')\n  .replace(/\\s{2,}/g, '\\n')\n  .trim();\n\nreturn [{ json: { text: clean } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1296,
+        -464
+      ],
+      "id": "cf300093-568a-4248-8876-985a9331ed49",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Первый результат\nconst first = $('Code in JavaScript').first().json.first_result || $('Basic LLM Chain1').first().json.text || '';\n// Второй результат от агента\nconst second = items[0].json.output || '';\n\n// Парсим в словари\nfunction parseResult(text) {\n  const result = {};\n  for (const line of text.split('\\n')) {\n    if (line.includes(':')) {\n      const [key, ...rest] = line.split(':');\n      result[key.trim()] = rest.join(':').trim();\n    }\n  }\n  return result;\n}\n\nconst firstDict = parseResult(first);\nconst secondDict = parseResult(second);\n\n// Мёрджим — второй перезаписывает только \"не найдено\"\nconst merged = {};\nfor (const [key, value] of Object.entries(firstDict)) {\n  if (value.toLowerCase().includes('не найдено') && \n      key in secondDict && \n      !secondDict[key].toLowerCase().includes('не найдено')) {\n    merged[key] = secondDict[key];\n  } else {\n    merged[key] = value;\n  }\n}\n\nconst output = Object.entries(merged).map(([k, v]) => `${k}: ${v}`).join('\\n');\n\nreturn [{ json: { text: output } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2464,
+        -400
+      ],
+      "id": "21ed905b-2323-4a49-95e3-66c79685d459",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Оригинальная структура с допустимыми значениями\nconst originalStructure = $('Webhook2').first().json.body.structure || '';\n\n\n// Парсим допустимые значения\nconst allowed = {};\nfor (const line of originalStructure.split('\\n')) {\n  if (line.includes(':')) {\n    const [key, ...rest] = line.split(':');\n    const values = rest.join(':').trim()\n      .split(/[\\/,]/)\n      .map(v => v.trim().toLowerCase())\n      .filter(v => v);\n    allowed[key.trim()] = values;\n  }\n}\n\n// Парсим итоговый результат\nconst resultText = items[0].json.text || $('Basic LLM Chain1').first().json.text || '';\nconst validated = [];\n\nfor (const line of resultText.split('\\n')) {\n  if (!line.includes(':')) continue;\n  \n  const [key, ...rest] = line.split(':');\n  const k = key.trim();\n  const value = rest.join(':').trim();\n\n  // Убираем \"не найдено\"\n  if (value.toLowerCase().includes('не найдено')) continue;\n\n  if (allowed[k] && allowed[k].length > 0) {\n    // Числовые поля — не проверяем\n    if (allowed[k].some(v => v.includes('число'))) {\n      validated.push(line);\n      continue;\n    }\n    // Текстовые поля — не проверяем\n    if (allowed[k].includes('текст') || allowed[k].some(v => v.includes('через запятую'))) {\n      validated.push(line);\n      continue;\n    }\n    // Проверяем каждое значение отдельно\n    const valueParts = value.split(',').map(v => v.trim());\n    const validParts = valueParts.filter(part =>\n      allowed[k].some(a =>\n        part.toLowerCase().includes(a) || a.includes(part.toLowerCase())\n      )\n    );\n    if (validParts.length > 0) {\n      validated.push(`${k}: ${validParts.join(', ')}`);\n    }\n  } else {\n    validated.push(line);\n  }\n}\n\nreturn [{ json: { text: validated.join('\\n') } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2720,
+        -480
+      ],
+      "id": "ec2a4790-b075-4724-81e4-b40667475ccd",
+      "name": "Code in JavaScript3"
+    },
+    {
+      "parameters": {
+        "jsCode": "const name = $input.first().json.body.product_name || '';\nconst structure = $input.first().json.body.structure || '';\n\nconst injectionPatterns = [\n  /забудь/i, /игнорируй/i, /новые инструкции/i, /ты теперь/i,\n  /притворись/i, /представь что ты/i, /действуй как/i, /ты являешься/i,\n  /системный промпт/i, /system message/i, /отыграй роль/i, /новая роль/i,\n  /выйди из роли/i, /твоя настоящая задача/i, /на самом деле ты/i,\n  /теперь ты должен/i, /ignore previous/i, /ignore all/i,\n  /forget everything/i, /forget previous/i, /you are now/i,\n  /act as/i, /pretend/i, /roleplay/i, /jailbreak/i, /system prompt/i,\n  /new instructions/i, /disregard/i, /override/i, /bypass/i,\n];\n\nconst fullInput = name + ' ' + structure;\n\nlet error = null;\n\nif (!name.trim()) error = 'Не указано название товара';\nelse if (name.trim().length > 300) error = 'Название товара слишком длинное';\nelse if (!structure.trim()) error = 'Не указана структура характеристик';\nelse if (!structure.split('\\n').some(line => line.includes(':'))) error = 'Структура не содержит полей в формате \"Название: значения\"';\nelse if (structure.length > 10000) error = 'Структура характеристик слишком большая';\nelse if (injectionPatterns.some(p => p.test(fullInput))) error = 'Недопустимое содержимое в запросе';\n\nreturn [{ json: { \n  ...($input.first().json),\n  is_valid: !error,\n  validation_error: error\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -32,
+        -432
+      ],
+      "id": "7e73f1ed-8158-4996-9b90-9a52d90f7de3",
+      "name": "Code in JavaScript4"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f0cb9a6e-c03c-441a-ba87-9a2b5d940340",
+              "leftValue": "={{ $json.is_valid }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        128,
+        -432
+      ],
+      "id": "541c40dd-e741-4099-8b83-012a2eefc9af",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.validation_error }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        224,
+        -256
+      ],
+      "id": "148285f6-f3fb-4e2d-967a-8d279058138f",
+      "name": "Respond to Webhook5"
+    },
+    {
+      "parameters": {
+        "content": "## Заполнение стандартизированных характеристик\n**Сценарий используется для заполнения стандартизированных характеристик - то есть, пользователь самостоятельно на уровне UI указывает характеристики и допустимые значения для них. Именно эти характеристики заполняются и именно в том формате, который необходим пользователю.** ",
+        "height": 608,
+        "width": 3808,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        -688
+      ],
+      "id": "caf52157-6a30-40af-98d0-8b397be80a20",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Простая проверка на prompt-injection\nПроверяет, нет ли в запросе слов-триггеров. При обнаружении отправляет отказ выполнить запрос.",
+        "height": 512,
+        "width": 640,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        -608
+      ],
+      "id": "eb0269c4-f6e0-44ba-ab20-680a20ec7431",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Получение информации с веб-сайта и обработка страницы\n1) Поиск прямой ссылки на товар.\n2) Проверка, удалось ли найти прямую ссылку. Если нет - сценарий завершается и пользователю приходит соответствующее уведомление.\n3) Если прямую ссылку найти удалось - http request парсит информацию со страницы, далее информация очищается.",
+        "height": 512,
+        "width": 848,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        592,
+        -608
+      ],
+      "id": "0326578e-c929-4ebb-b7e4-5e9e096722ee",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## Заполнение характеристик по определенной структуре\nLLM заполняет требуемую структуру характеристик данными, полученными на предыдущем шаге.",
+        "height": 512,
+        "width": 496,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1456,
+        -608
+      ],
+      "id": "0131a1d3-b578-4fc7-8797-e27d9150c440",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Дозаполнение отсутствующих характеристик\nЕсли на предыдущем шаге удалось заполнить не все характеристики - недостающие характеристики отправляются на дополнительный поиск. \nЕсли нашлись все характеристики - сразу вся информация отправляется на финальную проверку.",
+        "height": 512,
+        "width": 672,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1968,
+        -608
+      ],
+      "id": "db4e2199-d7aa-483d-ac16-dc0fc0589b51",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "## Финальная проверка\nПроверка на соответствие требуемой структуре. Если есть невалидные значения - они не выводятся в итоговый ответ.",
+        "height": 512,
+        "width": 288,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2656,
+        -608
+      ],
+      "id": "7d5a71d5-2911-4783-ba69-fe9366e3cc9c",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "## Быстрый поиск характеристик\n**Сценарий используется для быстрого заполнения характеристик - модель выполняет поиск в интернете и сама решает, какие именно характеристики включить и в каком формате** ",
+        "height": 560,
+        "width": 1632,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        -1296
+      ],
+      "id": "8d7941da-2a66-4420-8b1a-9dac8dbc3c5d",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "## Генерация текстового описания\n**Генерация текстового описания на основе названия товара, ключевых слов и характеристик, предоставленных пользователем** ",
+        "height": 560,
+        "width": 1664,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        -1296
+      ],
+      "id": "9e1fd326-42c2-4c2a-9633-cdc3e1e1bb72",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"image_url\": \"{{ $json.choices[0].message.images[0].image_url.url }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        3584,
+        -1088
+      ],
+      "id": "f5e00dca-bc19-47d8-ab7e-9547d12546ff",
+      "name": "Respond to Webhook6"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openrouter.ai/api/v1/chat/completions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openRouterApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"google/gemini-2.5-flash-image\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"type\": \"image_url\",\n          \"image_url\": {\n            \"url\": \"data:{{ $('Webhook3').first().json.body.image_mime }};base64,{{ $('Webhook3').first().json.body.image_base64 }}\"\n          }\n        },\n        {\n          \"type\": \"text\",\n\"text\": \"{{ 'You are given a product photo on a white background. ' + ($('Webhook3').first().json.body.product_name ? 'Product: ' + $('Webhook3').first().json.body.product_name + '. ' : '') + 'Task: Place this product in a realistic setting. ' + ($('Webhook3').first().json.body.background === 'auto' ? 'Choose the most fitting environment for this type of product yourself.' : 'Use this setting: ' + $('Webhook3').first().json.body.background + '.') + ' Keep the product exactly as is — same angle, same proportions. Change only the background. Photorealistic style, natural lighting, professional product photography.' }}\"\n        }\n      ]\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        3376,
+        -1088
+      ],
+      "id": "a3661bd1-a039-426a-9054-49479f23efc2",
+      "name": "HTTP Request1",
+      "credentials": {
+        "openRouterApi": {
+          "id": "MCnSM3CZQBR3ADjF",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Генерация изображений\n**Генерация изображений \"в реальности\" на основе фото на белом фоне, предоставленного пользователем, а также его предпочтений к фону**",
+        "height": 560,
+        "width": 1024,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2992,
+        -1296
+      ],
+      "id": "1cb2380c-cc2c-4615-845a-eb51ebeddb7b",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "jsCode": "const name = $input.first().json.body.product_name || '';\nconst sites = $input.first().json.body.sites || '';\n\nconst injectionPatterns = [\n  /забудь/i, /игнорируй/i, /новые инструкции/i, /ты теперь/i,\n  /притворись/i, /представь что ты/i, /действуй как/i, /ты являешься/i,\n  /системный промпт/i, /system message/i, /отыграй роль/i, /новая роль/i,\n  /выйди из роли/i, /твоя настоящая задача/i, /на самом деле ты/i,\n  /теперь ты должен/i, /ignore previous/i, /ignore all/i,\n  /forget everything/i, /forget previous/i, /you are now/i,\n  /act as/i, /pretend/i, /roleplay/i, /jailbreak/i, /system prompt/i,\n  /new instructions/i, /disregard/i, /override/i, /bypass/i,\n];\n\nconst fullInput = name + ' ' + sites;\nconst hasInjection = injectionPatterns.some(p => p.test(fullInput));\n\nreturn [{ json: {\n  ...$input.first().json,\n  is_valid: !hasInjection,\n  validation_error: hasInjection ? 'Недопустимое содержимое в запросе' : null\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -48,
+        -1056
+      ],
+      "id": "4339cdbb-b1ed-478e-ae25-d9c515e5932f",
+      "name": "Code in JavaScript5"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f0cb9a6e-c03c-441a-ba87-9a2b5d940340",
+              "leftValue": "={{ $json.is_valid }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        96,
+        -1056
+      ],
+      "id": "5a56b430-df0d-4e8d-a05a-f14035b8955c",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"error\": \"{{ $json.validation_error }}\" }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        192,
+        -928
+      ],
+      "id": "0318e3cc-210c-4dbf-92f8-90456a25f1ed",
+      "name": "Respond to Webhook7"
+    },
+    {
+      "parameters": {
+        "content": "## Простая проверка на prompt-injection\nПроверяет, нет ли в запросе слов-триггеров. При обнаружении отправляет отказ выполнить запрос.",
+        "height": 448,
+        "width": 608,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -96,
+        -1200
+      ],
+      "id": "954950a0-d1ee-4882-bb6c-969d3354c6bd",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "content": "## Поиск информации, генерация ответа\n1) Поиск информации о товаре\n2) Генерация списка характеристик",
+        "height": 448,
+        "width": 288,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        528,
+        -1200
+      ],
+      "id": "b6005b46-7176-4e92-bd1e-435575cbf24e",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "jsCode": "const name = $input.first().json.body.product_name || '';\nconst specs = $input.first().json.body.specs || '';\nconst keywords = $input.first().json.body.keywords || '';\n\nconst injectionPatterns = [\n  /забудь/i, /игнорируй/i, /новые инструкции/i, /ты теперь/i,\n  /притворись/i, /представь что ты/i, /действуй как/i, /ты являешься/i,\n  /системный промпт/i, /system message/i, /отыграй роль/i, /новая роль/i,\n  /выйди из роли/i, /твоя настоящая задача/i, /на самом деле ты/i,\n  /теперь ты должен/i, /ignore previous/i, /ignore all/i,\n  /forget everything/i, /forget previous/i, /you are now/i,\n  /act as/i, /pretend/i, /roleplay/i, /jailbreak/i, /system prompt/i,\n  /new instructions/i, /disregard/i, /override/i, /bypass/i,\n];\n\nconst fullInput = name + ' ' + specs + ' ' + keywords;\nconst hasInjection = injectionPatterns.some(p => p.test(fullInput));\n\nreturn [{ json: {\n  ...$input.first().json,\n  is_valid: !hasInjection,\n  validation_error: hasInjection ? 'Недопустимое содержимое в запросе' : null\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1632,
+        -1072
+      ],
+      "id": "68c4dbe5-d8fc-47b8-89df-762c8fe1d725",
+      "name": "Code in JavaScript6"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f0cb9a6e-c03c-441a-ba87-9a2b5d940340",
+              "leftValue": "={{ $json.is_valid }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1792,
+        -1072
+      ],
+      "id": "aa649464-f9a6-4eb5-8217-7a1e4eacfd5d",
+      "name": "If4"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"error\": \"{{ $json.validation_error }}\" }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1888,
+        -928
+      ],
+      "id": "30cf29d4-c2f5-49a0-8775-a3986cdb2a04",
+      "name": "Respond to Webhook8"
+    },
+    {
+      "parameters": {
+        "content": "## Простая проверка на prompt-injection\nПроверяет, нет ли в запросе слов-триггеров. При обнаружении отправляет отказ выполнить запрос.",
+        "height": 448,
+        "width": 598,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        -1200
+      ],
+      "id": "ca56dee9-34b9-4e3a-b806-04c39f3c5d34",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "content": "## Генерация описания\n",
+        "height": 448,
+        "width": 288,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2208,
+        -1200
+      ],
+      "id": "4213af87-fab0-4f58-acf0-6c5071931a45",
+      "name": "Sticky Note12"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5126f911-ac6d-47b8-922b-122b57a3fa6e",
+              "name": "start_time",
+              "value": "={{ Date.now() }}",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1456,
+        -1072
+      ],
+      "id": "bb5472be-9911-4bf4-80c7-7b04170dcca8",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "UQSlaBWvh1oATox2",
+          "mode": "list",
+          "cachedResultName": "Descriptr_DB",
+          "cachedResultUrl": "/projects/Vg6Q7UINLVDtdpRr/datatables/UQSlaBWvh1oATox2"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IP": "={{ $('Webhook').item.json.headers['x-forwarded-for'] }}",
+            "timestamp": "={{ new Date($('Edit Fields').item.json.start_time).toISOString() }}",
+            "scenario": "description",
+            "product_name": "={{ $('Webhook').item.json.body.product_name }}",
+            "status": "success",
+            "duration_ms": "={{ Date.now() - $('Edit Fields').item.json.start_time }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "IP",
+              "displayName": "IP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "scenario",
+              "displayName": "scenario",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "product_name",
+              "displayName": "product_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "duration_ms",
+              "displayName": "duration_ms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        2736,
+        -1088
+      ],
+      "id": "a25e448a-35e9-4f29-8225-827899326624",
+      "name": "Insert row"
+    },
+    {
+      "parameters": {
+        "content": "## Текущее время\n(для логирования)\n",
+        "height": 448,
+        "width": 160,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1424,
+        -1200
+      ],
+      "id": "f87607de-e774-4eff-b464-6196205df2cb",
+      "name": "Sticky Note13"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "UQSlaBWvh1oATox2",
+          "mode": "list",
+          "cachedResultName": "Descriptr_DB",
+          "cachedResultUrl": "/projects/Vg6Q7UINLVDtdpRr/datatables/UQSlaBWvh1oATox2"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IP": "={{ $('Webhook').item.json.headers['x-forwarded-for'] }}",
+            "timestamp": "={{ new Date($('Edit Fields').item.json.start_time).toISOString() }}",
+            "scenario": "description",
+            "product_name": "={{ $('Webhook').item.json.body.product_name }}",
+            "status": "rejected",
+            "duration_ms": "={{ Date.now() - $('Edit Fields').item.json.start_time }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "IP",
+              "displayName": "IP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "scenario",
+              "displayName": "scenario",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "product_name",
+              "displayName": "product_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "duration_ms",
+              "displayName": "duration_ms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        2016,
+        -928
+      ],
+      "id": "c4aabd2d-abbf-4e70-9abc-15207b553e22",
+      "name": "Insert row1"
+    },
+    {
+      "parameters": {
+        "content": "## Отправка ответа пользователю, логирование\n",
+        "height": 512,
+        "width": 432,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2960,
+        -608
+      ],
+      "id": "1ddb95da-bb61-426f-bb98-237661cce8af",
+      "name": "Sticky Note14"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "UQSlaBWvh1oATox2",
+          "mode": "list",
+          "cachedResultName": "Descriptr_DB",
+          "cachedResultUrl": "/projects/Vg6Q7UINLVDtdpRr/datatables/UQSlaBWvh1oATox2"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IP": "={{ $('Webhook2').item.json.headers['x-forwarded-for'] }}",
+            "timestamp": "={{ new Date($('Edit Fields3').item.json.start_time).toISOString() }}",
+            "scenario": "characteristics",
+            "product_name": "={{ $('Webhook2').item.json.body.product_name }}",
+            "status": "success",
+            "duration_ms": "={{ Date.now() - $('Edit Fields3').item.json.start_time }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "IP",
+              "displayName": "IP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "scenario",
+              "displayName": "scenario",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "product_name",
+              "displayName": "product_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "duration_ms",
+              "displayName": "duration_ms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        3200,
+        -480
+      ],
+      "id": "05616e3c-9d83-4724-85fd-e24596f1fd01",
+      "name": "Insert row2"
+    },
+    {
+      "parameters": {
+        "content": "## Отправка ответа пользователю, логирование\n",
+        "height": 448,
+        "width": 416,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2512,
+        -1200
+      ],
+      "id": "9dbcf3f0-7e81-4cd6-a751-72e8927d1bba",
+      "name": "Sticky Note15"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5126f911-ac6d-47b8-922b-122b57a3fa6e",
+              "name": "start_time",
+              "value": "={{ Date.now() }}",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3184,
+        -1088
+      ],
+      "id": "83a77b7e-c402-4466-aa01-2587c2241a51",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "UQSlaBWvh1oATox2",
+          "mode": "list",
+          "cachedResultName": "Descriptr_DB",
+          "cachedResultUrl": "/projects/Vg6Q7UINLVDtdpRr/datatables/UQSlaBWvh1oATox2"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IP": "={{ $('Webhook3').item.json.headers['x-forwarded-for'] }}",
+            "timestamp": "={{ new Date($('Edit Fields1').item.json.start_time).toISOString() }}",
+            "product_name": "={{ $('Webhook3').item.json.body.product_name }}",
+            "status": "success",
+            "duration_ms": "={{ Date.now() - $('Edit Fields1').item.json.start_time }}",
+            "scenario": "image"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "IP",
+              "displayName": "IP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "scenario",
+              "displayName": "scenario",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "product_name",
+              "displayName": "product_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "duration_ms",
+              "displayName": "duration_ms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        3776,
+        -1088
+      ],
+      "id": "1ab1f937-b688-421a-b547-5518496ba7b1",
+      "name": "Insert row3"
+    },
+    {
+      "parameters": {
+        "content": "## Отправка ответа пользователю, логирование\n",
+        "height": 448,
+        "width": 464,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3536,
+        -1200
+      ],
+      "id": "52e0fa7a-2cf2-4545-afcb-4e6b28889f27",
+      "name": "Sticky Note16"
+    },
+    {
+      "parameters": {
+        "content": "## Генерация изображения\n",
+        "height": 448,
+        "width": 192,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3328,
+        -1200
+      ],
+      "id": "58b68933-23f1-405a-b2df-e0c0ab4c9c53",
+      "name": "Sticky Note17"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "image",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        3024,
+        -1088
+      ],
+      "id": "e5717941-20fd-42da-8f5d-9a8175e517a5",
+      "name": "Webhook3",
+      "webhookId": "93b0fa0e-21e1-40d5-ac75-e79fe2968a1b"
+    },
+    {
+      "parameters": {
+        "content": "## Текущее время\n(для логирования)\n",
+        "height": 448,
+        "width": 160,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3152,
+        -1200
+      ],
+      "id": "b0c5c0d5-1b9e-4f79-b679-d659868e4c1e",
+      "name": "Sticky Note18"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5126f911-ac6d-47b8-922b-122b57a3fa6e",
+              "name": "start_time",
+              "value": "={{ Date.now() }}",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -240,
+        -1056
+      ],
+      "id": "6a48e6a0-774f-490c-b843-288c937aab88",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "content": "## Текущее время\n(для логирования)\n",
+        "height": 448,
+        "width": 160,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -272,
+        -1200
+      ],
+      "id": "a58386fb-1b3f-4210-840d-d753f488c843",
+      "name": "Sticky Note19"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "UQSlaBWvh1oATox2",
+          "mode": "list",
+          "cachedResultName": "Descriptr_DB",
+          "cachedResultUrl": "/projects/Vg6Q7UINLVDtdpRr/datatables/UQSlaBWvh1oATox2"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IP": "={{ $json.headers['x-forwarded-for'] }}",
+            "timestamp": "={{ new Date($('Edit Fields2').item.json.start_time).toISOString() }}",
+            "scenario": "quick characteristics",
+            "product_name": "={{ $json.body.product_name }}",
+            "status": "rejected",
+            "duration_ms": "={{ Date.now() - $('Edit Fields2').item.json.start_time }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "IP",
+              "displayName": "IP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "scenario",
+              "displayName": "scenario",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "product_name",
+              "displayName": "product_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "duration_ms",
+              "displayName": "duration_ms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        320,
+        -928
+      ],
+      "id": "1d097d90-20f0-4526-bde5-3fee8f1a17c2",
+      "name": "Insert row4"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "UQSlaBWvh1oATox2",
+          "mode": "list",
+          "cachedResultName": "Descriptr_DB",
+          "cachedResultUrl": "/projects/Vg6Q7UINLVDtdpRr/datatables/UQSlaBWvh1oATox2"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IP": "={{ $('Webhook1').item.json.headers['x-forwarded-for'] }}",
+            "timestamp": "={{ new Date($('Edit Fields2').item.json.start_time).toISOString() }}",
+            "product_name": "={{ $('Webhook1').item.json.body.product_name }}",
+            "status": "success",
+            "duration_ms": "={{ Date.now() - $('Edit Fields2').item.json.start_time }}",
+            "scenario": "quick characteristics"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "IP",
+              "displayName": "IP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "scenario",
+              "displayName": "scenario",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "product_name",
+              "displayName": "product_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "duration_ms",
+              "displayName": "duration_ms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1024,
+        -1072
+      ],
+      "id": "5795e363-fe1f-484c-8413-479d4cb11212",
+      "name": "Insert row5"
+    },
+    {
+      "parameters": {
+        "content": "## Отправка ответа пользователю, логирование\n",
+        "height": 448,
+        "width": 384,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        832,
+        -1200
+      ],
+      "id": "55d69d9f-11d5-4a17-a436-3c741572d195",
+      "name": "Sticky Note20"
+    },
+    {
+      "parameters": {
+        "content": "## Текущее время\n(для логирования)\n",
+        "height": 512,
+        "width": 160,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        -608
+      ],
+      "id": "c99a7f8b-cde2-4e33-8369-b50b10f74973",
+      "name": "Sticky Note21"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5126f911-ac6d-47b8-922b-122b57a3fa6e",
+              "name": "start_time",
+              "value": "={{ Date.now() }}",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -208,
+        -432
+      ],
+      "id": "09aa4ca7-a28b-43a8-8ba8-62cfcd7455f2",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "UQSlaBWvh1oATox2",
+          "mode": "list",
+          "cachedResultName": "Descriptr_DB",
+          "cachedResultUrl": "/projects/Vg6Q7UINLVDtdpRr/datatables/UQSlaBWvh1oATox2"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IP": "={{ $('Webhook2').item.json.headers['x-forwarded-for'] }}",
+            "timestamp": "={{ new Date($('Edit Fields3').item.json.start_time).toISOString() }}",
+            "scenario": "characteristics",
+            "product_name": "={{ $('Webhook2').item.json.body.product_name }}",
+            "status": "error",
+            "duration_ms": "={{ Date.now() - $('Edit Fields3').item.json.start_time }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "IP",
+              "displayName": "IP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "scenario",
+              "displayName": "scenario",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "product_name",
+              "displayName": "product_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "duration_ms",
+              "displayName": "duration_ms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1232,
+        -272
+      ],
+      "id": "2f61cd22-a14c-4991-aa14-3332aea88c9c",
+      "name": "Insert row6"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "UQSlaBWvh1oATox2",
+          "mode": "list",
+          "cachedResultName": "Descriptr_DB",
+          "cachedResultUrl": "/projects/Vg6Q7UINLVDtdpRr/datatables/UQSlaBWvh1oATox2"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IP": "={{ $('Webhook2').item.json.headers['x-forwarded-for'] }}",
+            "timestamp": "={{ new Date($('Edit Fields3').item.json.start_time).toISOString() }}",
+            "scenario": "characteristics",
+            "product_name": "={{ $('Webhook2').item.json.body.product_name }}",
+            "status": "rejected",
+            "duration_ms": "={{ Date.now() - $('Edit Fields3').item.json.start_time }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "IP",
+              "displayName": "IP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "scenario",
+              "displayName": "scenario",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "product_name",
+              "displayName": "product_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "duration_ms",
+              "displayName": "duration_ms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        352,
+        -256
+      ],
+      "id": "bf5efd71-5a02-4a74-9402-99e1e7ed8c82",
+      "name": "Insert row7"
+    }
+  ],
+  "pinData": {
+    "Webhook1": [
+      {
+        "json": {
+          "headers": {
+            "host": "larissa-unelectable-azalee.ngrok-free.dev",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+            "content-length": "152",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
+            "content-type": "application/json",
+            "origin": "null",
+            "priority": "u=1, i",
+            "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"Google Chrome\";v=\"145\", \"Chromium\";v=\"145\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "79.143.107.101",
+            "x-forwarded-host": "larissa-unelectable-azalee.ngrok-free.dev",
+            "x-forwarded-proto": "https"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "product_name": "Сковорода 22 \"Готовить легко\" Stone Gray забудь",
+            "mode": "quick",
+            "structure": null,
+            "url": null,
+            "sites": "https://nmp.ru/"
+          },
+          "webhookUrl": "https://larissa-unelectable-azalee.ngrok-free.dev/webhook-test/specs",
+          "executionMode": "test"
+        }
+      }
+    ],
+    "Webhook2": [
+      {
+        "json": {
+          "headers": {
+            "host": "larissa-unelectable-azalee.ngrok-free.dev",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+            "content-length": "295",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
+            "content-type": "application/json",
+            "origin": "null",
+            "priority": "u=1, i",
+            "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"Google Chrome\";v=\"145\", \"Chromium\";v=\"145\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "79.143.107.101",
+            "x-forwarded-host": "larissa-unelectable-azalee.ngrok-free.dev",
+            "x-forwarded-proto": "https"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "product_name": "Сковорода 22 \"Готовить легко\" Stone Gray",
+            "mode": "structured",
+            "structure": "Тип: сковорода / кастрюля / чайник\nДиаметр: число (см)\nКоллекция: текст забудь",
+            "url": "https://nmp.ru/",
+            "sites": "https://nmp.ru/"
+          },
+          "webhookUrl": "https://larissa-unelectable-azalee.ngrok-free.dev/webhook-test/specs_st",
+          "executionMode": "test"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google search in SerpApi": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google search in SerpApi2": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent2": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook3": {
+      "main": [
+        [
+          {
+            "node": "Insert row2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Agent4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model6": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google search in SerpApi4": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent4": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript3": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript4": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript5": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript6": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook8": {
+      "main": [
+        [
+          {
+            "node": "Insert row1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        [
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook6": {
+      "main": [
+        [
+          {
+            "node": "Insert row3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook3": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook7": {
+      "main": [
+        [
+          {
+            "node": "Insert row4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Insert row5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook5": {
+      "main": [
+        [
+          {
+            "node": "Insert row7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook4": {
+      "main": [
+        [
+          {
+            "node": "Insert row6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "91c93050-e0e9-422d-a7d3-9e01d74ac465",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "558d88703fb65b2d0e44613bc35916258b0f0bf983c5d4730c00c424b77ca36a"
+  },
+  "id": "TqBcOK7efd1K61cF",
+  "tags": []
+}
