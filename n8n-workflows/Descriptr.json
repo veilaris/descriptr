@@ -1974,82 +1974,7 @@
       "name": "Insert row7"
     }
   ],
-  "pinData": {
-    "Webhook1": [
-      {
-        "json": {
-          "headers": {
-            "host": "larissa-unelectable-azalee.ngrok-free.dev",
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
-            "content-length": "152",
-            "accept": "*/*",
-            "accept-encoding": "gzip, deflate, br, zstd",
-            "accept-language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
-            "content-type": "application/json",
-            "origin": "null",
-            "priority": "u=1, i",
-            "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"Google Chrome\";v=\"145\", \"Chromium\";v=\"145\"",
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-platform": "\"Windows\"",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "79.143.107.101",
-            "x-forwarded-host": "larissa-unelectable-azalee.ngrok-free.dev",
-            "x-forwarded-proto": "https"
-          },
-          "params": {},
-          "query": {},
-          "body": {
-            "product_name": "Сковорода 22 \"Готовить легко\" Stone Gray забудь",
-            "mode": "quick",
-            "structure": null,
-            "url": null,
-            "sites": "https://nmp.ru/"
-          },
-          "webhookUrl": "https://larissa-unelectable-azalee.ngrok-free.dev/webhook-test/specs",
-          "executionMode": "test"
-        }
-      }
-    ],
-    "Webhook2": [
-      {
-        "json": {
-          "headers": {
-            "host": "larissa-unelectable-azalee.ngrok-free.dev",
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
-            "content-length": "295",
-            "accept": "*/*",
-            "accept-encoding": "gzip, deflate, br, zstd",
-            "accept-language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
-            "content-type": "application/json",
-            "origin": "null",
-            "priority": "u=1, i",
-            "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"Google Chrome\";v=\"145\", \"Chromium\";v=\"145\"",
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-platform": "\"Windows\"",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "79.143.107.101",
-            "x-forwarded-host": "larissa-unelectable-azalee.ngrok-free.dev",
-            "x-forwarded-proto": "https"
-          },
-          "params": {},
-          "query": {},
-          "body": {
-            "product_name": "Сковорода 22 \"Готовить легко\" Stone Gray",
-            "mode": "structured",
-            "structure": "Тип: сковорода / кастрюля / чайник\nДиаметр: число (см)\nКоллекция: текст забудь",
-            "url": "https://nmp.ru/",
-            "sites": "https://nmp.ru/"
-          },
-          "webhookUrl": "https://larissa-unelectable-azalee.ngrok-free.dev/webhook-test/specs_st",
-          "executionMode": "test"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "connections": {
     "OpenRouter Chat Model": {
       "ai_languageModel": [
@@ -2560,11 +2485,11 @@
       ]
     }
   },
-  "active": true,
+  "active": false,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "91c93050-e0e9-422d-a7d3-9e01d74ac465",
+  "versionId": "b6807e66-f2ce-4481-b6ac-50444c8fc198",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "558d88703fb65b2d0e44613bc35916258b0f0bf983c5d4730c00c424b77ca36a"
